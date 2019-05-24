@@ -1,0 +1,87 @@
+
+df = it is stands for data frame
+==========================================
+import pandas as pd
+import numpy as np
+import seaborn as se
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('kc_house_data.csv')
+
+df.head()
+========================================= 
+Commands: 
+1) df.describe()
+2) df.info()
+3) df.isna().sum()
+4) se.countplot(x = 'view', data = df)
+5) se.countplot(x='bedrooms', data = df)
+6) plt.figure(figsize = (18,8)) To maxmise the figures
+   se.stripplot (x='bedrooms', y='price', data=df)
+7) plt.figure(figsize = (18,8))
+   se.barplot(x='bedrooms', y='price', hue = 'waterfront', data = df)
+8) plt.figure (figsize = (18,8))
+   se.distplot(df['price'])
+============================================ 
+Machine Learning steps 
+
+- import 
+- chossing the module 
+- training 
+
+============================================ 
+y = df['price']
+
+x = df.drop('price', axis=1)
+
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+xtrain, xtest, ytrain ,ytest = train_test_split(x, y, test_size = 0.3)
+
+reg = LinearRegression()
+
+reg.fit(xtrain,ytrain)
+======================================
+from sklearn.metrics import mean_absolute_error
+
+y_pred = reg.predict(xtrain)
+
+print("MAE of House pricing prediction = ", mean_absolute_error(ytrain, y_pred))
+======================================= 
+print (df['price'].min())
+print (df['price'].max())
+======================================= 
+
+from sklearn.metrics import mean_absolute_error
+
+y_pred = reg.predict(xtest)
+
+print("MAE of House pricing testing = ", mean_absolute_error(ytest, y_pred))
+
+======================================== 
+from sklearn.metrics import mean_absolute_error
+
+y_pred = reg.predict(xtrain)
+
+print("MAE of House pricing prediction = ", mean_absolute_error(ytrain, y_pred))
+======================================== 
+
+Alawys search using "scikit-learn fit()/drop()/...etc"
+
+==================================================
+
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler ()
+
+xtrain_scaled = scaler.fit_transform(xtrain)
+
+xtest_scaled = scaler.transform(xtest)
+
+//ytrain_scaled = scaler.fit_transform(ytrain)
+
+//ytest_scaled = scaler.transform(ytest)
+
+=============================================== 
+
